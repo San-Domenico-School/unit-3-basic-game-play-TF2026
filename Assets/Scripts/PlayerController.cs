@@ -12,7 +12,7 @@ public class PlayerContoller : MonoBehaviour
 
     void Start()
     {
-        // Initialization code here
+        // Initialization code here.
     }
 
     void Update()

@@ -4,17 +4,12 @@ using UnityEngine;
 
 public class DestroyOutOfScene : MonoBehaviour
 {
-    private float upperBound;
-    private float lowerBound;
-
-    private void start()
-    {
-
-    }
+    private float upperBound = 29f;
+    private float lowerBound = -29f;
 
     private void Update()
     {
-        
+        DestroyOutOfBounds();
     }
 
     private void DestroyOutOfBounds()
