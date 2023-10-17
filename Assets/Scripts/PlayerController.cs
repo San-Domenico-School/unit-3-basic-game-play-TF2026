@@ -31,6 +31,15 @@ public class PlayerContoller : MonoBehaviour
     {
         // Handle movement input from the player here
         move = input.Get<Vector2>().x;
+
+        if (move > 0)    //gives the int 1 or -1 based of vector2 input
+        {
+            move = 1;
+        }
+        else if (move < 0)
+        {
+            move = -1;
+        }
     }
 
     public void OnFire()
