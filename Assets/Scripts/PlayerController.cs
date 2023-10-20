@@ -12,7 +12,7 @@ public class PlayerContoller : MonoBehaviour
 
     void Start()
     {
-        // Initialization code here.
+        centerToEdge = 15f; //Sets the Right Edge.
     }
 
     void Update()
@@ -24,27 +24,29 @@ public class PlayerContoller : MonoBehaviour
     private void PlayerMovement()
     {
         // Player movement logic here
-
-        transform.Translate(Vector3.right * speed * move * Time.deltaTime);    }
+        transform.Translate(Vector3.right * speed * move * Time.deltaTime);
+        if(Mathf.Abs(transform.position.x) > centerToEdge)
+        {
+            float edge = centerToEdge;
+            if(transform.position.x < 0f)
+            {
+                edge = -centerToEdge;
+            }
+            transform.position = new Vector3(centerToEdge, transform.position.y, transform.position.z);
+        }
+    }
 
     public void OnMove(InputValue input)
     {
         // Handle movement input from the player here
-        move = input.Get<Vector2>().x;
-
-        if (move > 0)    //gives the int 1 or -1 based of vector2 input
-        {
-            move = 1;
-        }
-        else if (move < 0)
-        {
-            move = -1;
-        }
+        Vector2 moveDirection = input.Get<Vector2>();
+        move = moveDirection.x;
+        Debug.Log(move);
     }
 
-    public void OnFire()
+    private void OnFire()
     {
-        // Handle firing or shooting logic here
+        Instantiate(projectile, transform.position + Vector3.up, projectile.transform.rotation);
         Instantiate(projectile, transform.position, Quaternion.identity);
     }
 }
